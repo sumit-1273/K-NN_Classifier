@@ -62,7 +62,7 @@ class KNNClassifier:
 
   def train(self,train_path):
     data = pd.read_csv(train_path,header=None)
-    array = pd.DataFrame(data).to_numpy()
+    array = data.to_numpy()
     self.train_data = array
     train_data , validation_data = train_test_split(array, test_size=0.30, random_state=43)
     given_train_label = train_data[:,0]
@@ -87,7 +87,7 @@ class KNNClassifier:
     train_array = self.train_data
     given_train_label =  train_array[:,0]
     train_array = train_array[:,1:]
-    test_array = pd.DataFrame(test_data).to_numpy()
+    test_array  = test_data.to_numpy()
     k = self.k
     knn_label = []
     for i in range(len(test_array)):
