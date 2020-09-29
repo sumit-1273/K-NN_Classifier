@@ -14,8 +14,6 @@ class KNNClassifier:
     self.acu = 0
     self.path = ''
     self.train_data = []
-    pass
-
 
   def euclidean_distance(self,data_point, training_data_point):
     a = np.array(data_point)
@@ -27,11 +25,6 @@ class KNNClassifier:
 
   def eucl_distance(self,data_point, train):
     return np.sum((data_point-train)*(data_point-train),axis=1)
-
-  def manhattan_distance(self, data_point, training_data_point):
-    blocks = abs(data_point - training_data_point)
-    dis = np.sum(blocks)
-    return dis
 
   def assign_label(self,label):
     lab_count = {}
@@ -60,6 +53,7 @@ class KNNClassifier:
     per =  list(label).count(0)/len(given_label)
     return per
 
+  # Finding optimal value of K using training data
   def train(self,train_path):
     data = pd.read_csv(train_path,header=None)
     array = data.to_numpy()
@@ -84,9 +78,6 @@ class KNNClassifier:
 
   def predict(self,test_path):
     test_data = pd.read_csv(test_path,header=None)
-    train_array = self.train_data
-    given_train_label =  train_array[:,0]
-    train_array = train_array[:,1:]
     test_array  = test_data.to_numpy()
     k = self.k
     knn_label = []
